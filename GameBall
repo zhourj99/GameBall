@@ -1,0 +1,71 @@
+package GameBegin;
+/*
+ * 画布类
+ */
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import javax.swing.JPanel;
+
+public class MyPanel extends JPanel{
+	private int score ;//分数
+	private String str;//画字
+	Ball ball;//球
+	Board board;//挡板
+	
+	//构造方法
+	public MyPanel() {
+		ball = new Ball();//实例化球对象 
+		board = new Board();//实例化挡板对象
+	}
+	//改变字体
+	public void ChangeFont(Graphics g){
+		Font f = new Font("宋体",Font.BOLD,30);
+		g.setFont(f);
+	}
+	//重写paint方法
+	@Override
+	public void paint(Graphics g){
+		ChangeFont(g);
+		//添加颜色
+		g.setColor(Color.RED);
+		//添加分数
+		g.drawString("SCORE:"+score, 20, 30);//添加分数
+		//添加实心圆
+		g.setColor(Color.BLUE);
+//		g.drawOval(ball.getX(), ball.getY(), ball.getD(),ball.getD());//添加圆
+		g.fillOval(ball.getX(), ball.getY(), ball.getD(),ball.getD());
+		//添加挡板
+		g.setColor(Color.YELLOW);
+		g.fillRect(board.getX(),board.getY(),board.getWidth(),board.getHeight());
+//		g.drawString("开始游戏:", 350, 206);//添加开始游戏
+//		g.drawString("GAME OVER:", 350, 206);//添加结束游戏
+//		g.drawString("STOP:", 350, 206);//添加停止游戏
+	}
+	
+	//对外公开
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public String getStr() {
+		return str;
+	}
+	public void setStr(String str) {
+		this.str = str;
+	}
+	public Ball getBall() {
+		return ball;
+	}
+	public void setBall(Ball ball) {
+		this.ball = ball;
+	}
+	public Board getBoard() {
+		return board;
+	}
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+}
